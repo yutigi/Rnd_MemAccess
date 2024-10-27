@@ -3,3 +3,6 @@
 *.idea
 *bin
 *obj
+
+ProgramA/MyProject.vcxproj
+ProgramB/MyProject.vcxproj

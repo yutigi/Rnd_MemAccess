@@ -1,15 +1,3 @@
-// #include <iostream>
-// using namespace std;
-//
-// int main() {
-//     int* mem = (int*)(0x002DC044);
-//     cout << "Memory address: " << mem << endl;
-//     cout << *mem << endl;
-//     cout << &mem << endl;
-//     system("pause");
-//     return 0;
-// }
-
 #include <iostream>
 #include <Windows.h>
 
@@ -27,7 +15,6 @@ int main(){
     // Check if HWND found the Window
     if (hwnd == NULL) {
         cout << "Can't find Process." << endl;
-        Sleep(2000); // Sleep 2 seconds
         exit(-1); // Exit the program if it did not find the Window
     } else {
         DWORD procID; // A 32-bit unsigned integer, DWORDS are mostly used to store Hexadecimal Addresses

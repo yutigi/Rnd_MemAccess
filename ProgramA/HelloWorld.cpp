@@ -2,9 +2,7 @@
 #include <Windows.h>
 using namespace std;
 
-static int static_value = 99;
-
-
+static const char static_value[] = "Test12345";
 
 int main() {
     //int static_value = 99;

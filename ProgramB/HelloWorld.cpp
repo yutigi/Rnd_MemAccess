@@ -17,7 +17,10 @@ using namespace std;
 
 int main(){
 
-    int readTest = 0; // We store the Value we read from the Process here
+    constexpr int BufferSize = 10;
+    void* readTest = malloc(sizeof(char) * BufferSize); // we need to allocate memory size before we got the buffer. 
+    SIZE_T size = sizeof(char) * BufferSize;
+    constexpr int Address = 0x0057AC50;
 
     HWND hwnd = FindWindowA(NULL, "Dummy Window!"); // HWND (Windows window) by Window Name
 
@@ -33,13 +36,26 @@ int main(){
 
         if (procID == NULL) {
             cout << "Can't find Process." << endl;
-            Sleep(2000); // Sleep 2 seconds
-            exit(-1); // Exit the program if it did not find the Window
-        } else {
-            // Read the Process Memory, 03007640 is the Address, we read the Value from and save it in readTest
-            ReadProcessMemory(handle, (PBYTE*)0x00E4A000, &readTest, sizeof(readTest), 0);
+            exit(-1);
+        } else
+        {
+            // Read the Process Memory, we read the Value from and save it in readTest
+            ReadProcessMemory(handle, (PBYTE*)Address, &readTest,size, 0);
+
             cout << readTest << endl;
-            Sleep(5000); // Sleep 5 seconds
+
+            // convert to store Hexadecimal Addresses
+            DWORD* Address = (DWORD*)&readTest;
+            cout << ((char*)Address) << endl;
+            cout << &Address << endl;
+
+            // same but if you want to offset the bytes. use char* intead using DWORD* 
+            cout << "CharAddress" << endl;
+            constexpr int OFFSET = 0;
+            char* CharAddress = (char*)&readTest + OFFSET;
+            cout << CharAddress << endl;
+            exit(0);
         }
     }
+    free(readTest);
 }

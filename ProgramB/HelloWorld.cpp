@@ -6,7 +6,7 @@ using namespace std;
 int main(){
 
     constexpr int BufferSize = 10;
-    void* readTest = malloc(sizeof(char) * BufferSize); // we need to allocate memory size before we got the buffer. 
+    void* readTest;
     SIZE_T size = sizeof(char) * BufferSize;
     constexpr int Address = 0x0057AC50;
 
